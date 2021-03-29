@@ -1,0 +1,14 @@
+.listitemstyle{
+    color:white;
+}
+
+.active{
+    border-left:3px solid red;
+
+}
+
+.side-menu{
+    background-color:black;
+    margin-right:10px;
+    height:100vh;
+}

@@ -1,0 +1,35 @@
+.titlefont{
+    font-family:roboto;
+    font-size:14px;
+}
+
+.alignTop{
+    height:100%;
+    margin-top:10px;
+}
+
+.mat-form-field-underline {
+    display: none!important;
+  }
+
+@media screen and (max-width: 640px){
+  .topclass{
+    display:grid; grid-template-rows: repeat(2, 20px);
+    
+  }
+}
+ 
+
+@media screen and (min-width: 641px){
+    .topclass{
+      display:grid; grid-template-columns: repeat(2, 1fr);
+      width:150px;
+    }
+  }
+  
+  ::ng-deep .mat-form-field-infix{
+      width:0px !important;
+      border:0px!important;
+      padding:0px;
+  }
+

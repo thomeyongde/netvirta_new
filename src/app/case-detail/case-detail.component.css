@@ -1,0 +1,25 @@
+.mat-dialog-title {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+mat-form-field{
+    font-size:11px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.mat-flat-button{
+    color:white;
+    font-size:11px;
+}
+
+.colorgreen{
+    background-color:green;
+    font-family: 'Roboto', sans-serif;
+}
+
+.colorred{
+    background-color:red;
+    font-family: 'Roboto', sans-serif;
+}

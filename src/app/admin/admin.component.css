@@ -1,0 +1,193 @@
+.main{
+    display:flex;
+    flex-direction: column;
+}
+
+.filter-content{
+    display:flex;
+    flex-direction:row;
+}
+
+.fontred{
+    color:red;
+    font-weight: bold;
+}
+
+.dotline{
+    border:0; border-bottom: 1px dotted;
+}
+
+@media screen and (min-width: 641px){
+.filterpanel{
+    grid-template-columns: repeat(4, 1fr);
+    display:grid;
+}
+}
+
+@media screen and (max-width: 640px){
+    .filterpanel{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2,1fr);
+        display:grid;
+    }
+}
+
+
+
+.table-style{
+    overflow-x:auto; 
+    width:100%;
+}
+
+
+.font12{
+    font-size:12px;
+}
+
+mat-header-cell, mat-header-row, .mat-header-cell-def{
+    font-weight:bold!important;
+    border-right:1px solid lightgray;
+    margin-left:5px;
+  }
+
+mat-cell{
+    margin-left:10px!important;
+    font-size:11px;
+}
+
+  mat-table {
+    overflow-x: auto;
+    height:100%;
+  }
+
+  .ccursor:hover{
+      cursor:pointer;
+  }
+
+  
+  @media screen and (max-width: 640px){
+  .mat-cell,
+  .mat-header-cell {
+    word-wrap: initial;
+    display: table-cell;
+    padding: 0px 10px;
+    line-break: unset;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+  }
+
+  .mat-cell{
+    border-top:0px;
+    border-bottom:1px;
+    border-right:0px;
+    border-left:0px;
+    border-style:solid;
+    border-color: rgba(0,0,0,.12);
+  }
+  
+  .mat-row,
+  .mat-header-row {
+    display: table-row;
+  }
+}
+
+.pagebuttonStyle{
+    background-color: white;
+    color:red;
+    border:1px solid #e7e7e7;
+    outline:none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.pagebuttonStyle:hover,.pagebuttonStyle:focus,.pagebuttonStyle:active{
+    background-color: white;
+    color:red;
+    border:1px solid red;
+    outline:none;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+.pagebuttonStyleSelected{
+    background-color: red;
+    color:white;
+    border:1px solid red;
+    outline:none;
+}
+
+.caseFilterButtonStyle{
+    background-color: #e7e7e7;
+    color:black;
+    margin:3px;
+    border:1px solid #e7e7e7;
+    outline:none;
+    min-width:80px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.black-icon{
+    color: black!important;
+    opacity:1!important;
+    margin-top:3px;
+}
+
+.chip{
+    background-color: white !important;
+    color:red!important;
+}
+
+.casebuttonStyleSelected{
+    background-color: black;
+    color:white;
+    margin:3px;
+    border:1px solid black;
+    outline:none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.countryFilterButtonStyle{
+    background-color:white;
+    font-size:20px;
+    color:rgba(0,0,0,.48);
+    border:0px;
+    font-family: 'Roboto', sans-serif;
+    outline:none;
+}
+
+.countrybuttonStyleSelected{
+    background-color:white;
+    font-size:20px;
+    color:red;
+    border:0px;
+    outline:none;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    padding:0px;
+    margin:0px;
+    height:100%;
+    background-color:black;
+}
+
+.body-container{
+    display:flex;
+    flex-direction: row;
+    height:100vh;
+}
+
+  .content{
+      flex:1 1 auto;
+      min-width:0px;
+      width:100%;
+      background-color: white;
+  }

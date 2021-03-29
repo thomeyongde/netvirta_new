@@ -1,0 +1,81 @@
+
+
+
+<p mat-dialog-title>Edit {{acase.lastName}} Details</p>
+<hr>
+
+<div mat-dialog-content>
+  <form #caseForm="ngForm">
+    <p style="color:red">User Details</p>
+  
+    <div style="display:flex;flex-direction: column;">
+      <div>
+        <mat-form-field style="width:50%">
+          <input name="firstname" required #firstname="ngModel" matInput [(ngModel)]="acase.firstName"> 
+          <mat-error *ngIf="firstname.invalid">
+            FirstName is required.
+          </mat-error>
+        </mat-form-field>
+
+
+      </div>
+
+      <div>    
+         
+          <mat-form-field style="width:50%">
+            <input required name="lastname" #lastname="ngModel" matInput [(ngModel)]="acase.lastName"> 
+            <mat-error *ngIf="lastname.invalid">
+              LastName is required.
+            </mat-error>
+          </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field style="width:50%">
+          <input required matInput name="country" #country="ngModel" [(ngModel)]="acase.country">   
+          <mat-error *ngIf="country.invalid">
+            Country is required.
+          </mat-error> 
+        </mat-form-field>
+           
+      </div>
+
+      <div>
+        <mat-form-field style="width:50%">
+          <input (change)='check($event)' type="tel" pattern="[0-9]{8}" required matInput name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="acase.phoneNumber">   
+          <mat-error *ngIf="phoneNumber.invalid">
+            Phone number is not valid.
+          </mat-error> 
+        </mat-form-field>
+           
+      </div>
+
+      <div>    
+          
+          <mat-form-field style="width:50%">
+            <input name="birthdate" #birthdate="ngModel" required matInput [matDatepicker]="datepicker" [(ngModel)]="acase.birthDate">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+            </mat-datepicker>
+
+            <mat-error *ngIf="birthdate.invalid">
+              Birth Date is not valid.
+            </mat-error> 
+          </mat-form-field>   
+               
+      </div>
+      
+  </div>
+  <hr style="margin-top:0px!important;margin-bottom:0px!important">
+      <div mat-dialog-actions style="display:flex">
+          <!-- <button mat-button (click)="onNoClick()">Close</button> -->
+        <div>
+            <button mat-flat-button class="colorred" cdkFocusInitial (click)="cancel()">Cancel</button>
+        </div>
+        <span style="flex:1 1 auto"></span>
+          <div>
+          <button [disabled]="!caseForm.valid" class="colorgreen" mat-flat-button  mat-button cdkFocusInitial (click)="updateAccount()">Update Account</button>
+        </div>
+      
+</div>
+  </form>

@@ -1,0 +1,50 @@
+
+<mat-toolbar color="white" style="background-color:white;box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28)" class="topbar telative titlefont">
+ 
+  <div class="alignTop">
+    <button mat-icon-button (click)="toggleMenu()"><mat-icon>menu</mat-icon></button>
+    <a href="index.html">Client Name/logo | Company Name/Logo</a>
+  </div>
+
+  <span style="flex:1 1 auto"></span>
+ 
+  <div class="topclass alignTop">
+  <div>
+    <mat-label>Settings</mat-label>
+    <mat-form-field>
+    <mat-select>
+      <mat-option>Change Password</mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+  <div>
+    
+    <a href="\login" *ngIf="!isLogin">Login</a>
+    <a href="#" *ngIf="isLogin" (click)="loggedOut()">Logged Out</a>
+  </div>
+</div>
+  <!-- 
+  <div style="display:flex;flex-direction: column;">
+  <div>
+    <a href="#">Logged Out</a>
+  </div>
+  <div>
+      <mat-label>Settings</mat-label>
+      <mat-select>
+        <mat-option>Change Password</mat-option>
+      </mat-select>
+  </div>
+</div>-->
+
+<!-- 
+    <mat-form-field>
+      <mat-label>Settings</mat-label>
+      <mat-select>
+        <mat-option>Change Password</mat-option>
+      </mat-select>
+    </mat-form-field>
+  -->
+      
+    
+</mat-toolbar>
+  

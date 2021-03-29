@@ -1,0 +1,169 @@
+
+
+<div class="body-container">
+
+
+<div class="content">
+<div style="display:flex;flex-direction: column; height:100vh">
+  <div style="margin:10px">
+    
+    <mat-card>
+      <mat-card-header class="sheader">
+          <div class="sicon-line"></div>
+          <div class="sheader-line"></div>
+      </mat-card-header>
+
+    <mat-card-content class="filterpanel">
+
+      
+
+          <div class="font12 fontred ccursor" (click)="onFilterCase($event)">
+            Status
+            <br>
+            <input disabled style="width:50%;margin-top:5px" matInput value="{{filteredCase==''?'All Cases':filteredCase}}" class="dotline ccursor"> 
+          </div>
+
+          <div class="font12 fontred ccursor" (click)="onFilterCountry($event)">
+            Country
+            <br>
+            <input class="ccursor" disabled style="width:50%;margin-top:5px" matInput class="dotline ccursor" value='{{filteredCountry|country}}'> 
+         
+          </div>
+
+          <div class="font12">
+            <mat-label class="ccursor" (click)="resetFilter($event)" style="color:gray">Reset Filter</mat-label>
+          </div>
+
+          <div  class="font12">
+            <mat-form-field appearance="fill" style="width:100%">
+              <mat-label>Search</mat-label>
+              <input matInput [(ngModel)]="searchValue" (keyup)="search($event)">
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="isfilterCase" style="grid-column: 1 / span 4;">
+            <button [ngClass]="filteredCase==''?'casebuttonStyleSelected':'caseFilterButtonStyle'" (click)="dofilterStatus('')">All Cases</button>
+            <button [ngClass]="filteredCase=='Complete'?'casebuttonStyleSelected':'caseFilterButtonStyle'" (click)="dofilterStatus('Complete')">Complete</button>
+            <button [ngClass]="filteredCase=='InComplete'?'casebuttonStyleSelected':'caseFilterButtonStyle'" (click)="dofilterStatus('InComplete')">InComplete</button>
+        
+          </div>
+
+          <div *ngIf="isfilterCountry" style="grid-column: 1 / span 4;">
+            <button *ngFor="let country of filterCountryLetterList" (click)="onfilterCountryLetter(country)" [ngClass]="selectedCountryLetter==country?'countrybuttonStyleSelected':'countryFilterButtonStyle'">{{country}}</button>
+          </div>
+
+          <div *ngIf="isfilterCountry" style="grid-column: 1 / span 4;">
+            <button *ngFor="let country of filterCountryList" (click)="dofilterCountry(country)" [ngClass]="filteredCountry.includes(country)?'casebuttonStyleSelected':'caseFilterButtonStyle'">{{country}}</button>
+          </div>
+
+          <div style="grid-column:1/span 4;">
+            <mat-chip-list #chipList aria-label="Country Selection">
+            <mat-chip
+            *ngFor="let country of filteredCountry"
+            [selectable]="selectable"
+            class="chip"
+            [removable]="removable"
+            (removed)="remove(country)">
+            {{country}}
+            <mat-icon class="black-icon" matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+          </div>
+
+    </mat-card-content>
+    </mat-card>
+  </div>
+
+  
+    <div style="margin:10px;flex:1;">
+
+      <mat-card style="height:100%">
+        <mat-card-header class="sheader">
+            <div class="sicon-line"></div>
+            <div class="sheader-line"></div>
+        </mat-card-header>
+  
+      <mat-card-content>
+
+        <mat-table [dataSource]="dataSource" matSort>
+          <!-- User name Definition -->
+          <ng-container matColumnDef="selection">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-checkbox  color="primary" (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> <mat-checkbox  color="primary" (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)"></mat-checkbox></mat-cell>
+              
+          </ng-container>
+
+
+          <!-- User name Definition -->
+          <ng-container matColumnDef="img">
+            <mat-header-cell *matHeaderCellDef> IMG. </mat-header-cell>
+            <!--  {{row.img}}  -->
+            <mat-cell *matCellDef="let row"><i class="fas fa-image"></i></mat-cell>
+          </ng-container>
+        
+          <!-- Age Definition -->
+          <ng-container matColumnDef="firstName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
+          </ng-container>
+        
+          <!-- Title Definition -->
+          <ng-container matColumnDef="lastName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.lastName}} </mat-cell>
+          </ng-container>
+
+          <!-- Title Definition -->
+          <ng-container matColumnDef="birthDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Birth Date</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.birthDate | date: 'MM/dd/yyyy'}} </mat-cell>
+          </ng-container>
+
+          <!-- Title Definition -->
+          <ng-container matColumnDef="country">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.country}} </mat-cell>
+          </ng-container>
+
+          <!-- Title Definition -->
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Uncomplete</mat-header-cell>
+                <mat-cell *matCellDef="let row" [ngStyle]="{'color':row.status=='Incomplete'?'red':'green'}"> {{row.status}} </mat-cell>
+            </ng-container>
+
+               <!-- Title Definition -->
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <i (click)="editCase(row)" class="fas fa-edit"></i>
+                  <i (click)="removeCase(row)" class="fas fa-trash"></i>
+                </mat-cell>
+            </ng-container>
+            
+        
+          <!-- Header and Row Declarations -->
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+
+        <mat-paginator style="visibility:hidden" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        
+        <div style="display:flex;flex-direction:row;">
+          <button  class="pagebuttonStyle" *ngIf="currentPage!=0">Previous</button>
+          <button [ngClass]="currentPage==(page-1)?'pagebuttonStyleSelected':'pagebuttonStyle'" *ngFor="let page of pageArr" (click)="goToPage(page)">{{page}}</button>
+          <button class="pagebuttonStyle" *ngIf="currentPage!=(totalPageCount-1)">Next</button>
+      
+        </div>
+      
+     </mat-card-content>
+      </mat-card>
+  </div>
+</div>
+</div>
+</div>

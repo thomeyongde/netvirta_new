@@ -1,0 +1,26 @@
+<div class="container">
+  <app-topbar (toggleEvent)="toggleMenu($event)"></app-topbar>
+
+    <div class="content">
+      
+      
+      <mat-sidenav-container class="example-sidenav-container"
+      >
+
+            <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" 
+            class="sideNavStyle">
+
+              <app-sidemenu></app-sidemenu>
+            </mat-sidenav>
+         
+          <mat-sidenav-content>
+            <router-outlet></router-outlet>
+          </mat-sidenav-content>
+        </mat-sidenav-container> 
+    
+    </div>
+
+  </div>
+
+<!-- </div>
+  -->

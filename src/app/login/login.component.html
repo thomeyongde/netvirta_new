@@ -1,0 +1,29 @@
+<form #f="ngForm">
+<div id="login">
+  <h3 style="width:50%" class="header">Login</h3>
+  
+
+  <mat-form-field class="input" style="width:50%">
+    <mat-label>Login Name</mat-label>
+    <input name="loginName" #name='ngModel' [(ngModel)]="loginName" required matInput> 
+    <mat-error *ngIf="name.invalid">
+      Login Name is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="input" style="width:50%">
+    <mat-label>Password</mat-label>
+    <input type="password" name="password" #pass='ngModel' required matInput [(ngModel)]="password"> 
+    <mat-error *ngIf="pass.invalid">
+      Password is required.
+    </mat-error>
+  </mat-form-field>
+
+
+  <button cdkFocusInitial [disabled]="!f.valid" (click)="login()">Login</button>
+
+  <div class="errormsg" *ngIf='isLogin==false'>
+    You have entered a wrong username and password
+  </div>
+
+</div>
+</form>
